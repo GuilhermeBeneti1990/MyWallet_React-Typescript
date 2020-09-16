@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 
 import { Container, Content, Filters } from './styles'
 import ContentHeader from '../../components/ContentHeader'
 import SelectInput from '../../components/SelectInput'
 import FinanceHistoryCard from '../../components/FinanceHistoryCard'
 
-const List: React.FC = () => {
+interface IRouteParams {
+    match: {
+        params: {
+            type: string
+        }
+    }
+}
+
+const List: React.FC<IRouteParams> = ({ match }) => {
+
+    const { type } = match.params
+
+    const title = useMemo(() => {
+        return type === 'money-in' ? 'Money-IN' : 'Money-OUT'
+    }, [type])
+
+    const lineColor = useMemo(() => {
+        return type === 'money-in' ? '#F7931B' : '#E44C4E'
+    }, [type])
 
     const months = [
         {
@@ -33,7 +51,7 @@ const List: React.FC = () => {
 
     return (
         <Container>
-            <ContentHeader title='Money Out' lineColor='#E44C4E'>
+            <ContentHeader title={title} lineColor={lineColor}>
                 <SelectInput options={months}/>
                 <SelectInput options={years}/>
             </ContentHeader>
