@@ -8,6 +8,7 @@ import WalletMessageBox from '../../components/WalletMessageBox'
 
 import happyImg from '../../assets/happy.svg'
 import sadImg from '../../assets/sad.svg'
+import grinningImg from '../../assets/grinning.svg'
 
 import expenses from '../../repositories/expenses'
 import gains from '../../repositories/gains'
@@ -118,7 +119,19 @@ const Dashboard: React.FC = () => {
                 icon: sadImg
             }
         } else if(totalBalance === 0) {
-            
+                return {
+                    title: 'Ufa!',
+                    description: 'Neste mês, você gastou exatamente o que ganhou!',
+                    footerText: 'Tome cuidado, economizar um pouco é sempre bom!.',
+                    icon: grinningImg
+                }
+        } else {
+            return {
+                title: 'Muito ben!',
+                description: 'Sua carteira está positiva!',
+                footerText: 'Continue assim, considere realizar alguns investimentos!.',
+                icon: happyImg
+            }
         }
     }, [totalBalance])
 
@@ -132,7 +145,7 @@ const Dashboard: React.FC = () => {
                 <WalletBox title='Balance' amount={totalBalance} footerLabel='Atualizado com base na entrada de dados' icon='dolar' color='#4E41F0' />
                 <WalletBox title='Money-IN' amount={totalGains} footerLabel='Atualizado com base na entrada de dados' icon='arrowUp' color='#F7931B' />
                 <WalletBox title='Money-OUT' amount={totalExpenses} footerLabel='Atualizado com base na entrada de dados' icon='arrowDown' color='#E44C4E' />
-                <WalletMessageBox title='Muito bem!' description='Sua carteira está positiva!' footerText='Continue assim! Considere fazer alguns investimentos.' icon={happyImg} />
+                <WalletMessageBox title={message.title} description={message.description} footerText={message.footerText} icon={message.icon} />
             </Content>
         </Container>
     )
