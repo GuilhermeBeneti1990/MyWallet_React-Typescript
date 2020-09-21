@@ -58,17 +58,17 @@ const List: React.FC<IRouteParams> = ({ match }) => {
         if(type === 'money-in') {
             return {
                 title: 'Money-IN',
-                lineColor: '#F7931B',
+                lineColor: '#4E41F0',
                 data: gains
             }
         } else {
             return {
-                title: 'Money-IN',
-                lineColor: '#F7931B',
-                data: gains
+                title: 'Money-OUT',
+                lineColor: '#E44C4E',
+                data: expenses
             }
         }
-    }, [])
+    }, [type])
 
     const months = useMemo(() => {
         return monthsList.map((month, index) => {
