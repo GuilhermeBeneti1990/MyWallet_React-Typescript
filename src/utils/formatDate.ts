@@ -1,5 +1,3 @@
-import formatCurrency from "./formatCurrency"
-
 const formatDate = (date: string): string => {
     const dateFormatted = new Date(date)
     const day = dateFormatted.getDate() > 9 ? dateFormatted.getDate() : `0${dateFormatted.getDate()}`
